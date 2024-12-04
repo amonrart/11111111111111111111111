@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>โพสต์</title>
+    <style>
+        /* Reset Styles */
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fffbea;
+        }
+
+        /* Header */
+        header {
+            background-color: #ffeb00;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header img {
+            height: 40px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        header .menu-icons {
+            display: flex;
+            gap: 15px;
+            font-size: 20px;
+        }
+
+        /* Form Section */
+        .post-container {
+            background-color: #fffbea;
+            padding: 20px;
+        }
+        .post-container select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .post-container .upload-box {
+            border: 2px dashed #ccc;
+            border-radius: 10px;
+            width: 100%;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 36px;
+            color: #ccc;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+        .post-container textarea {
+            width: 100%;
+            height: 100px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .post-container .additional-options {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .post-container .additional-options button {
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: white;
+            cursor: pointer;
+        }
+        .post-container .location {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        /* Post Button */
+        .post-container .post-button {
+            display: flex;
+            justify-content: flex-end;
+        }
+        .post-container .post-button button {
+            background-color: #ffeb00;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .post-container .post-button button:hover {
+            background-color: #ffd700;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <img src="logo.png" alt="Logo"> <!-- เปลี่ยนเป็นโลโก้ของคุณ -->
+        <h1>โพสต์</h1>
+        <div class="menu-icons">
+            <span>🏠</span>
+            <span>🔍</span>
+            <span>📸</span>
+            <span>🔔</span>
+            <span>👤</span>
+            <span>☰</span>
+        </div>
+    </header>
+
+    <!-- Post Form -->
+    <div class="post-container">
+        <form action="#" method="POST">
+            <!-- Category Selection -->
+            <select name="category">
+                <option value="">เลือกหมวดหมู่การโพสต์</option>
+                <option value="อาหาร">อาหาร</option>
+                <option value="แฟชั่น">แฟชั่น</option>
+                <option value="ท่องเที่ยว">ท่องเที่ยว</option>
+                <!-- เพิ่มตัวเลือกหมวดหมู่เพิ่มเติม -->
+            </select>
+
+            <!-- Image Upload -->
+            <div class="upload-box" onclick="document.getElementById('file-upload').click();">
+                <span>+</span>
+                <input type="file" id="file-upload" name="image" style="display: none;">
+            </div>
+
+            <!-- Caption -->
+            <textarea name="caption" placeholder="เพิ่มหัวเรื่องน่าสนใจเพื่อเพิ่มยอดดู"></textarea>
+
+            <!-- Additional Options -->
+            <div class="additional-options">
+                <button type="button">📎 ไอเดียแนบไฟล์</button>
+                <button type="button">📍 สถานที่</button>
+            </div>
+
+            <!-- Location -->
+            <div class="location">
+                <span>📍 เพิ่มตำแหน่งที่ตั้ง</span>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="post-button">
+                <button type="submit">โพสต์</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

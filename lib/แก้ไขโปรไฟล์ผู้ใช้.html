@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>แก้ไขโปรไฟล์</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fffbea;
+        }
+        header {
+            background-color: #ffeb00;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header img {
+            height: 50px;
+        }
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+        nav a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto;
+            position: relative;
+            background-color: #ccc;
+        }
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .profile-pic span {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 24px;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 5px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .upload-link {
+            color: green;
+            text-decoration: none;
+            display: block;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        .info-section {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .info-section .column {
+            flex: 1;
+            margin: 0 10px;
+            background-color: #fff9c4;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+        .info-section table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .info-section th, .info-section td {
+            text-align: left;
+            padding: 10px;
+            font-size: 14px;
+        }
+        .info-section th {
+            color: #444;
+        }
+        .info-section td {
+            color: #666;
+        }
+        .save-button {
+            background-color: #ffeb00;
+            color: black;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        .save-button:hover {
+            background-color: #ffd700;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="Logo">
+        <nav>
+            <a href="#">ติดตาม</a>
+            <a href="#">สำหรับคุณ</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>แก้ไขโปรไฟล์</h1>
+        <div class="profile-pic">
+            <img src="profile.jpg" alt="Profile Picture">
+            <span>📸</span>
+        </div>
+        <a href="#" class="upload-link">อัปโหลดรูปภาพ</a>
+
+        <div class="info-section">
+            <!-- Basic Info -->
+            <div class="column">
+                <table>
+                    <tr>
+                        <th>ชื่อ</th>
+                        <td>เดมดัง ♡.*</td>
+                    </tr>
+                    <tr>
+                        <th>ชื่อผู้ใช้</th>
+                        <td>@tamroiroi456123</td>
+                    </tr>
+                    <tr>
+                        <th>ประวัติ</th>
+                        <td>เพิ่มประวัติส่วนตัว</td>
+                    </tr>
+                    <tr>
+                        <th>เพศ</th>
+                        <td>หญิง</td>
+                    </tr>
+                    <tr>
+                        <th>อายุ</th>
+                        <td>21</td>
+                    </tr>
+                </table>
+            </div>
+            <!-- Additional Info -->
+            <div class="column">
+                <table>
+                    <tr>
+                        <th>TikTok</th>
+                        <td>เพิ่มชื่อผู้ใช้ TikTok</td>
+                    </tr>
+                    <tr>
+                        <th>Instagram</th>
+                        <td>เพิ่มชื่อผู้ใช้ Instagram</td>
+                    </tr>
+                    <tr>
+                        <th>YouTube</th>
+                        <td>เพิ่มบัญชี YouTube</td>
+                    </tr>
+                    <tr>
+                        <th>เว็บไซต์</th>
+                        <td>เพิ่มเว็บไซต์ของคุณ</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <button class="save-button">ยืนยันการแก้ไข</button>
+    </div>
+</body>
+</html>

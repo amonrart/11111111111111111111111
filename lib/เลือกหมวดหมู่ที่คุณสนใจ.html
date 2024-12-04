@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เลือกหมวดหมู่ที่คุณสนใจ</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #ffeb00;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fffbea;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 80%;
+            max-width: 800px;
+        }
+        .logo {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        .logo img {
+            height: 50px;
+        }
+        h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0;
+            color: black;
+        }
+        p {
+            font-size: 16px;
+            color: #666;
+        }
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .category {
+            background-color: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 16px;
+            cursor: pointer;
+            position: relative;
+        }
+        .category input {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+        .category:hover {
+            background-color: #f9f9f9;
+        }
+        .submit-button {
+            background-color: #ffeb00;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .submit-button:hover {
+            background-color: #ffd700;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="โลโก้เว็บตามรอยรีวิว.png" alt="Logo"> <!-- ใส่โลโก้ของคุณ -->
+        </div>
+        <h1>เลือกหมวดหมู่ที่คุณสนใจ</h1>
+        <p>เลือกสิ่งที่คุณสนใจเพื่อปรับแต่งประสบการณ์การใช้งาน TAM ROI Review ให้เหมาะกับคุณ</p>
+        <form action="1.html" method="get">
+            <div class="categories">
+                <label class="category">
+                    อาหาร
+                    <input type="radio" name="category" value="อาหาร">
+                </label>
+                <label class="category">
+                    แฟชั่น
+                    <input type="radio" name="category" value="แฟชั่น">
+                </label>
+                <label class="category">
+                    สุขภาพ
+                    <input type="radio" name="category" value="สุขภาพ">
+                </label>
+                <label class="category">
+                    การท่องเที่ยว
+                    <input type="radio" name="category" value="การท่องเที่ยว">
+                </label>
+                <label class="category">
+                    การตกแต่ง
+                    <input type="radio" name="category" value="การตกแต่ง">
+                </label>
+                <label class="category">
+                    สกินแคร์
+                    <input type="radio" name="category" value="สกินแคร์">
+                </label>
+                <label class="category">
+                    ถ่ายรูป
+                    <input type="radio" name="category" value="ถ่ายรูป">
+                </label>
+                <label class="category">
+                    เลี้ยงสัตว์
+                    <input type="radio" name="category" value="เลี้ยงสัตว์">
+                </label>
+                <label class="category">
+                    อาชีพ
+                    <input type="radio" name="category" value="อาชีพ">
+                </label>
+                <label class="category">
+                    น้ำหนัก
+                    <input type="radio" name="category" value="น้ำหนัก">
+                </label>
+            </div>
+            <button type="submit" class="submit-button">เสร็จสิ้น</button>
+        </form>
+    </div>
+</body>
+</html>
