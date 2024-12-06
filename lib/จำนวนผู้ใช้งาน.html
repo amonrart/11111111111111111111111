@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>จำนวนผู้ใช้งาน - Admin</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fffbea;
+        }
+
+        /* Header */
+        header {
+            background-color: #ffeb00;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header img {
+            height: 50px;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 200px;
+            background-color: #fff9c4;
+            height: 100vh;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 220px;
+            padding: 20px;
+        }
+
+        .main-content h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .search-bar {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .search-bar input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 25px;
+            width: 300px;
+        }
+
+        .card {
+            background-color: #fff9c4;
+            padding: 10px;
+            display: inline-block;
+            font-size: 20px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th, table td {
+            text-align: left;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+
+        table th {
+            background-color: #ffeb00;
+        }
+
+        .delete-icon {
+            cursor: pointer;
+            font-size: 20px;
+            color: red;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff9c4;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        .modal button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .modal .cancel-btn {
+            background-color: #ccc;
+        }
+
+        .modal .confirm-btn {
+            background-color: red;
+            color: white;
+        }
+
+        .modal h3 {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <img src="logo.png" alt="Logo">
+        <nav>
+            <a href="#">หน้าหลัก</a>
+        </nav>
+        <div class="menu-icons">
+            <span>🏠</span>
+            <span>🔍</span>
+            <span>📸</span>
+            <span>🔔</span>
+            <span>👤</span>
+            <span>☰</span>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <img src="profile.jpg" alt="Admin Profile">
+        <h2>Admin</h2>
+        <p>ยังไม่ได้ลงชื่อเข้าใช้งาน</p>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <h1>จำนวนผู้ใช้งาน</h1>
+        <div class="card">
+            จำนวนผู้ใช้งาน <br>
+            <span id="user-count">56</span>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="ค้นหา ID ผู้ใช้งาน">
+        </div>
+        <table id="user-table">
+            <thead>
+                <tr>
+                    <th>NO</th>
+                    <th>ชื่อผู้ใช้งาน</th>
+                    <th>ID ผู้ใช้</th>
+                    <th>สถานะบัญชี</th>
+                    <th>ลบ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>ใบตองหวาน</td>
+                    <td>000001</td>
+                    <td>กำลังใช้งาน</td>
+                    <td><span class="delete-icon" onclick="confirmDelete(this)">🗑️</span></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>หนูผิง</td>
+                    <td>000002</td>
+                    <td>กำลังใช้งาน</td>
+                    <td><span class="delete-icon" onclick="confirmDelete(this)">🗑️</span></td>
+                    <tr>
+                        <td>1</td>
+                        <td>ใบตองหวาน</td>
+                        <td>000001</td>
+                        <td>กำลังใช้งาน</td>
+                        <td><span class="delete-icon" onclick="confirmDelete(this)">🗑️</span></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>หนูผิง</td>
+                        <td>000002</td>
+                        <td>กำลังใช้งาน</td>
+                        <td><span class="delete-icon" onclick="confirmDelete(this)">🗑️</span></td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>ใบตองหวาน</td>
+                        <td>000001</td>
+                        <td>กำลังใช้งาน</td>
+                        <td><span class="delete-icon" onclick="confirmDelete(this)">🗑️</span></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>หนูผิง</td>
+                        <td>000002</td>
+                        <td>กำลังใช้งาน</td>
+                        <td><span class="delete-icon" onclick="confirmDelete(this)">🗑️</span></td>
+                    </tr>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+
+    <!-- Modal -->
+    <div class="modal" id="deleteModal">
+        <h3>ต้องการลบผู้ใช้นี้ใช่ไหม?</h3>
+        <button class="cancel-btn" onclick="closeModal()">ยกเลิก</button>
+        <button class="confirm-btn" onclick="deleteConfirmed()">ลบ</button>
+    </div>
+
+    <script>
+        let rowToDelete = null;
+
+        function confirmDelete(button) {
+            rowToDelete = button.closest('tr');
+            document.getElementById('deleteModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('deleteModal').style.display = 'none';
+            rowToDelete = null;
+        }
+
+        function deleteConfirmed() {
+            if (rowToDelete) {
+                rowToDelete.remove();
+                const userCount = document.getElementById('user-count');
+                userCount.textContent = parseInt(userCount.textContent) - 1;
+            }
+            closeModal();
+        }
+    </script>
+</body>
+</html>
+

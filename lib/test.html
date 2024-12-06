@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tam ROI Review</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fffbea;
+        }
+
+        /* Header */
+        header {
+            background-color: #ffeb00;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header img {
+            height: 50px;
+        }
+
+        .menu-icons {
+            display: flex;
+            gap: 15px;
+            font-size: 20px;
+        }
+
+        .menu-icons span {
+            cursor: pointer;
+        }
+
+        /* Categories */
+        .categories {
+            display: flex;
+            justify-content: center;
+            background-color: #ffeb00;
+            padding: 10px 0;
+        }
+
+        .categories a {
+            text-decoration: none;
+            color: black;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        /* Post Grid */
+        .post-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        /* Post Card */
+        .post-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .post-card img {
+            width: 100%;
+            height: auto;
+        }
+
+        .post-content {
+            padding: 15px;
+        }
+
+        .post-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 15px;
+            background: #f8f8f8;
+            border-top: 1px solid #ddd;
+        }
+
+        .post-footer span {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .post-footer .actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .post-footer .actions button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        /* Floating Button */
+        .add-content-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #ffeb00;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 36px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .add-content-button:hover {
+            background-color: #ffd700;
+        }
+        .categories {
+        display: flex; /* ใช้ Flexbox */
+        justify-content: space-evenly; /* กระจายหมวดหมู่ให้ห่างเท่าๆ กัน */
+        align-items: center; /* จัดให้อยู่ตรงกลางแนวตั้ง */
+        padding: 10px 0;
+        background-color: #ffeb00; /* พื้นหลังสีเหลือง */
+        width: 100%; /* ทำให้แถบเต็มหน้าจอ */
+        box-sizing: border-box; /* รวม padding ในการคำนวณขนาด */
+        }
+
+        .categories a {
+        text-decoration: none; /* ลบเส้นใต้ลิงก์ */
+        color: black; /* สีตัวอักษร */
+        font-size: 18px; /* ขนาดตัวอักษร */
+        font-weight: bold; /* ตัวหนา */
+        padding: 5px 10px; /* เพิ่มระยะห่างรอบลิงก์ */
+        transition: color 0.3s; /* เอฟเฟกต์เปลี่ยนสีเมื่อ Hover */
+        }
+
+        .categories a:hover {
+            color: #555; /* เปลี่ยนสีเมื่อวางเมาส์ */
+        }
+
+        .center-text {
+            text-align: center;
+            margin: 10px 0 20px 0;
+            position: relative;
+            font-weight: bold;
+            background-color: #fffbea;
+        }
+
+        .center-text h2 {
+            display: inline-block;
+            font-size: 20px;
+            padding: 0 10px;
+            position: relative;
+            z-index: 2;
+            background-color: #fffbea;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <img src="logo.png" alt="Logo">
+        <div class="menu-icons">
+            <span>🏠</span>
+            <span>🔍</span>
+            <span>📸</span>
+            <span>🔔</span>
+            <span>👤</span>
+            <span>☰</span>
+        </div>
+    </header>
+
+    <div class="center-text">
+        <h2>สำหรับคุณ</h2>
+    </div>
+
+    <!-- Categories -->
+    <div class="categories">
+        <a href="#">อาหาร</a>
+        <a href="#">แฟชั่น</a>
+        <a href="#">การท่องเที่ยว</a>
+        <a href="#">สุขภาพ</a>
+        <a href="#">การตกแต่งบ้าน</a>
+        <a href="#">สกินแคร์</a>
+        <a href="#">ถ่ายรูป</a>
+        <a href="#">สัตว์เลี้ยง</a>
+        <a href="#">อาชีพ</a>
+        <a href="#">ลดน้ำหนัก</a>
+    </div>
+
+
+    <!-- Post Grid -->
+    <main class="post-grid">
+        <div class="post-card">
+            <img src="post1.jpg" alt="Post Image">
+            <div class="post-content">
+                <strong>สูตรหมูทอด</strong>
+            </div>
+            <div class="post-footer">
+                <span>❤️ 204</span>
+                <div class="actions">
+                    <button>💬</button>
+                    <button>🔗</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="post-card">
+            <img src="post2.jpg" alt="Post Image">
+            <div class="post-content">
+                <strong>รวมเมนูสุขภาพ</strong>
+            </div>
+            <div class="post-footer">
+                <span>❤️ 320</span>
+                <div class="actions">
+                    <button>💬</button>
+                    <button>🔗</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Repeat for more posts -->
+    </main>
+
+    <!-- Add Content Button -->
+    <div class="add-content-button">
+        +
+    </div>
+</body>
+</html>

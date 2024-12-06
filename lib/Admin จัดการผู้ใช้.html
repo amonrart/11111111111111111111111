@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Admin</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fffbea;
+        }
+
+        /* Header */
+        header {
+            background-color: #ffeb00;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header img {
+            height: 50px;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 200px;
+            background-color: #fff9c4;
+            height: 100vh;
+            position: fixed;
+            top: 70px;
+            left: 0;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 220px;
+            padding: 20px;
+        }
+
+        .card {
+            display: inline-block;
+            width: 200px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            text-align: center;
+            font-size: 18px;
+            color: black;
+        }
+
+        .card.green {
+            background-color: #d9fdd3;
+        }
+
+        .card.red {
+            background-color: #ffd1d1;
+        }
+
+        .card.blue {
+            background-color: #cfe8ff;
+        }
+
+        .card span {
+            font-size: 50px;
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+            background-color: #fffbea;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .icon {
+            font-size: 30px;
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <img src="logo.png" alt="Logo">
+        <nav>
+            <a href="#">หน้าหลัก</a>
+        </nav>
+        <div class="menu-icons">
+            <span>🏠</span>
+            <span>🔍</span>
+            <span>📸</span>
+            <span>🔔</span>
+            <span>👤</span>
+            <span>☰</span>
+        </div>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <img src="profile.jpg" alt="Admin Profile">
+        <h2>Admin</h2>
+        <p>ยังไม่ได้ลงชื่อเข้าใช้งาน</p>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="card green">
+            <a href="จำนวนผู้ใช้งาน.html" style="text-decoration: none; color: inherit;">
+                <div class="icon">👤</div>
+                จำนวนผู้ใช้งาน
+                <span>56</span>
+            </a>
+        </div>
+        
+        <div class="card red">
+            <a href="จำนวนโพสต์.html" style="text-decoration: none; color: inherit;">
+                <div class="icon">🗒️</div>
+                จำนวนโพสต์
+                <span>231</span>
+            </a>
+        </div>
+        
+        <div class="card blue">
+            <a href="จำนวนหมวดหมู่.html" style="text-decoration: none; color: inherit;">
+                <div class="icon">🔳</div>
+                จำนวนหมวดหมู่
+                <span>10</span>
+            </a>
+        </div>
+        
+    </main>
+</body>
+</html>
