@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tam ROI Review</title>
+    <title>Dropdown Manu</title>
     <style>
         body {
             margin: 0;
@@ -22,6 +23,32 @@
 
         header img {
             height: 50px;
+        }
+
+        .search-bar {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .search-bar input {
+            padding: 5px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .search-bar button {
+            padding: 5px 10px;
+            font-size: 16px;
+            background-color: #ffd700;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .search-bar button:hover {
+            background-color: #ffcc00;
         }
 
         .menu-icons {
@@ -162,6 +189,139 @@
             background-color: #fffbea;
         }
 
+        /* Dropdown Menu */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 40px;
+            background-color: white;
+            width: 200px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            z-index: 10;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .dropdown-content a {
+            display: block;
+            margin: 10px 0;
+            color: black;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .dropdown-content a:hover {
+            color: #ffeb00;
+        }
+
+        .dropdown-content hr {
+            margin: 10px 0;
+            border: none;
+            border-top: 1px solid #ddd;
+        }
+
+        /* Dropdown Open */
+        .dropdown.open .dropdown-content {
+            display: block;
+        }
+
+         /* Modal */
+         .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            width: 80%;
+            max-width: 500px;
+        }
+
+        .modal-header {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .modal-body {
+            margin: 15px 0;
+        }
+
+        .modal-body input[type="file"],
+
+        .modal-body input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .modal-body button {
+            background-color: #ffeb00;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .modal-body button:hover {
+            background-color: #ffd700;
+        }
+
+        .comment-section {
+            padding: 10px 15px;
+            background: #f9f9f9;
+            border-top: 1px solid #ddd;
+        }
+
+        .comment-list {
+             margin-bottom: 10px;
+        }
+
+        .comment-item {
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+
+        .comment-section input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        
     </style>
 </head>
 <body>
@@ -170,14 +330,125 @@
         <img src="logo.png" alt="Logo">
         <div class="menu-icons">
             <span>🏠</span>
-            <span>🔍</span>
-            <span>📸</span>
+            <div class="search-bar">
+                <input type="text" id="searchInput" placeholder="ค้นหา...">
+                <button id="searchButton">🔍</button>
+            </div>
+            <span id="image-search-icon">📸</span>
             <span>🔔</span>
-            <span>👤</span>
-            <span>☰</span>
+            <span onclick="location.href='login.html'" style="cursor: pointer;">👤</span>
+            <div class="dropdown">
+                <span class="dropdown-icon" id="dropdownButton">☰</span>
+                <div class="dropdown-content" id="dropdownMenu">
+                    <a href="login.html">สมัครสมาชิก</a>
+                    <hr>
+                    <a href="login.html">เข้าสู่ระบบ</a>
+                </div>
+            </div>
+
+            <div class="modal" id="imageSearchModal">
+                <div class="modal-content">
+                    <span class="modal-close" id="closeModal">✖</span>
+                    <div class="modal-header">ค้นหาด้วย Lens</div>
+                    <div class="modal-body">
+                        <p>ลากรูปภาพมาที่นี่หรือ <a href="#">อัปโหลดไฟล์</a></p>
+                        <input type="file" id="imageUpload">
+                        <p>หรือ</p>
+                        <input type="text" id="imageLink" placeholder="วางลิงก์รูปภาพ">
+                        <button id="searchButton">ค้นหา</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const searchInput = document.getElementById("searchInput");
+            const searchButton = document.getElementById("searchButton");
+            const posts = document.querySelectorAll(".post-card");
+
+            const filterPosts = () => {
+                const keyword = searchInput.value.toLowerCase();
+
+                posts.forEach(post => {
+                    const title = post.getAttribute("data-title").toLowerCase();
+                    if (title.includes(keyword)) {
+                        post.style.display = "block";
+                    } else {
+                        post.style.display = "none";
+                    }
+                });
+            };
+
+            searchButton.addEventListener("click", filterPosts);
+
+            searchInput.addEventListener("keypress", (event) => {
+                if (event.key === "Enter") {
+                    filterPosts();
+                }
+            });
+        });
+    </script>
+
+
+    <script>
+        const imageSearchIcon = document.getElementById('image-search-icon');
+        const imageSearchModal = document.getElementById('imageSearchModal');
+        const closeModal = document.getElementById('closeModal');
+        const searchButton = document.getElementById('searchButton');
+
+        // Open modal when clicking the 📸 icon
+        imageSearchIcon.addEventListener('click', () => {
+            imageSearchModal.style.display = 'flex';
+        });
+
+        // Close modal when clicking the ✖
+        closeModal.addEventListener('click', () => {
+            imageSearchModal.style.display = 'none';
+        });
+
+        // Close modal when clicking outside the modal
+        window.addEventListener('click', (event) => {
+            if (event.target === imageSearchModal) {
+                imageSearchModal.style.display = 'none';
+            }
+        });
+
+        // Handle search button click
+        searchButton.addEventListener('click', () => {
+            const imageUpload = document.getElementById('imageUpload').files[0];
+            const imageLink = document.getElementById('imageLink').value;
+
+            if (imageUpload) {
+                alert(`คุณได้อัปโหลดไฟล์: ${imageUpload.name}`);
+            } else if (imageLink) {
+                alert(`คุณได้ใส่ลิงก์รูปภาพ: ${imageLink}`);
+            } else {
+                alert('โปรดเลือกไฟล์หรือใส่ลิงก์รูปภาพก่อนค้นหา');
+            }
+        });
+    </script>
+    
+    
+    <script>
+        const dropdownButton = document.getElementById('dropdownButton');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+
+        dropdownButton.addEventListener('click', () => {
+            dropdownMenu.parentElement.classList.toggle('open');
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                dropdownMenu.parentElement.classList.remove('open');
+            }
+        });
+    </script>
+
+
+</body>
+    
     <div class="center-text">
         <h2>สำหรับคุณ</h2>
     </div>
@@ -196,9 +467,46 @@
         <a href="#">ลดน้ำหนัก</a>
     </div>
 
-
+    
     <!-- Post Grid -->
     <main class="post-grid">
+        <div class="post-card">
+            <img src="post1.jpg" alt="Post Image">
+            <div class="post-content">
+                <strong>สูตรหมูทอด</strong>
+            </div>
+            <div class="post-footer">
+                <span>❤️ 220</span>
+                <div class="actions">
+                    <button>💬</button>
+                    <button class="copy-link" data-link="https://example.com/post1">🔗</button>
+                </div>
+            </div>
+            <div class="comment-section" style="display: none;">
+                <div class="comment-list"></div>
+                <input type="text" placeholder="เพิ่มความคิดเห็น...">
+            </div>
+        </div>
+        
+
+        <div class="post-card">
+            <img src="post2.jpg" alt="Post Image">
+            <div class="post-content">
+                <strong>รวมเมนูสุขภาพ</strong>
+            </div>
+            <div class="post-footer">
+                <span>❤️ 320</span>
+                <div class="actions">
+                    <button>💬</button>
+                    <button>🔗</button>
+                </div>
+            </div>
+            <div class="comment-section" style="display: none;">
+                <div class="comment-list"></div>
+                <input type="text" placeholder="เพิ่มความคิดเห็น...">
+            </div>
+        </div>
+
         <div class="post-card">
             <img src="post1.jpg" alt="Post Image">
             <div class="post-content">
@@ -210,6 +518,10 @@
                     <button>💬</button>
                     <button>🔗</button>
                 </div>
+            </div>
+            <div class="comment-section" style="display: none;">
+                <div class="comment-list"></div>
+                <input type="text" placeholder="เพิ่มความคิดเห็น...">
             </div>
         </div>
 
@@ -225,14 +537,170 @@
                     <button>🔗</button>
                 </div>
             </div>
+            <div class="comment-section" style="display: none;">
+                <div class="comment-list"></div>
+                <input type="text" placeholder="เพิ่มความคิดเห็น...">
+            </div>
         </div>
+
+        <div class="post-card">
+            <img src="post1.jpg" alt="Post Image">
+            <div class="post-content">
+                <strong>สูตรหมูทอด</strong>
+            </div>
+            <div class="post-footer">
+                <span>❤️ 204</span>
+                <div class="actions">
+                    <button>💬</button>
+                    <button>🔗</button>
+                </div>
+            </div>
+            <div class="comment-section" style="display: none;">
+                <div class="comment-list"></div>
+                <input type="text" placeholder="เพิ่มความคิดเห็น...">
+            </div>
+        </div>
+
+        <div class="post-card">
+            <img src="post2.jpg" alt="Post Image">
+            <div class="post-content">
+                <strong>รวมเมนูสุขภาพ</strong>
+            </div>
+            <div class="post-footer">
+                <span>❤️ 320</span>
+                <div class="actions">
+                    <button>💬</button>
+                    <button>🔗</button>
+                </div>
+            </div>
+            <div class="comment-section" style="display: none;">
+                <div class="comment-list"></div>
+                <input type="text" placeholder="เพิ่มความคิดเห็น...">
+            </div>
+        </div>
+
+        <div class="post-card">
+            <img src="post1.jpg" alt="Post Image">
+            <div class="post-content">
+                <strong>สูตรหมูทอด</strong>
+            </div>
+            <div class="post-footer">
+                <span>❤️ 204</span>
+                <div class="actions">
+                    <button>💬</button>
+                    <button>🔗</button>
+                </div>
+            </div>
+            <div class="comment-section" style="display: none;">
+                <div class="comment-list"></div>
+                <input type="text" placeholder="เพิ่มความคิดเห็น...">
+            </div>
+        </div>
+
+        <div class="post-card">
+            <img src="post2.jpg" alt="Post Image">
+            <div class="post-content">
+                <strong>รวมเมนูสุขภาพ</strong>
+            </div>
+            <div class="post-footer">
+                <span>❤️ 320</span>
+                <div class="actions">
+                    <button>💬</button>
+                    <button>🔗</button>
+                </div>
+            </div>
+            <div class="comment-section" style="display: none;">
+                <div class="comment-list"></div>
+                <input type="text" placeholder="เพิ่มความคิดเห็น...">
+            </div>
+        </div>
+
+        <script>
+            // เพิ่ม Event Listener ให้ปุ่ม ❤️
+            document.addEventListener('DOMContentLoaded', () => {
+                // ค้นหาไอคอน ❤️ ทั้งหมดใน post-footer
+                const likeButtons = document.querySelectorAll('.post-footer span');
+        
+                likeButtons.forEach((likeButton) => {
+                    likeButton.addEventListener('click', () => {
+                        // ดึงค่าปัจจุบันของตัวเลข ❤️ และแปลงเป็นตัวเลข
+                        let currentLikes = parseInt(likeButton.textContent.split(' ')[1]);
+                        // เพิ่มค่าขึ้นทีละ 1
+                        currentLikes += 1;
+                        // อัปเดตข้อความในไอคอน ❤️
+                        likeButton.textContent = `❤️ ${currentLikes}`;
+                    });
+                });
+            });
+        </script>
+        
+
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                // ค้นหาปุ่ม 💬 ในทุกโพสต์
+                const commentButtons = document.querySelectorAll(".post-footer .actions button:nth-child(1)");
+        
+                commentButtons.forEach((button, index) => {
+                    button.addEventListener("click", () => {
+                        // แสดงหรือซ่อนส่วนความคิดเห็นของโพสต์ที่เกี่ยวข้อง
+                        const commentSection = document.querySelectorAll(".comment-section")[index];
+                        if (commentSection.style.display === "none" || !commentSection.style.display) {
+                            commentSection.style.display = "block";
+                        } else {
+                            commentSection.style.display = "none";
+                        }
+                    });
+                });
+        
+                // จัดการเหตุการณ์การกด Enter ในช่องความคิดเห็น
+                const commentInputs = document.querySelectorAll(".comment-section input");
+        
+                commentInputs.forEach((input, index) => {
+                    input.addEventListener("keypress", (event) => {
+                        if (event.key === "Enter" && input.value.trim() !== "") {
+                            // เพิ่มความคิดเห็นในส่วน comment-list ของโพสต์ที่เกี่ยวข้อง
+                            const commentList = document.querySelectorAll(".comment-list")[index];
+                            const newComment = document.createElement("div");
+                            newComment.classList.add("comment-item");
+                            newComment.textContent = input.value;
+        
+                            commentList.appendChild(newComment); // เพิ่มความคิดเห็นใน list
+                            input.value = ""; // ล้างข้อความใน input
+                        }
+                        
+                    });
+                });
+            });
+        </script>
+        
+
 
         <!-- Repeat for more posts -->
     </main>
 
     <!-- Add Content Button -->
-    <div class="add-content-button">
-        +
-    </div>
+    <a href="login.html" class="add-content-button">+</a>
+
+    <script>
+        // เพิ่มฟังก์ชันสำหรับคัดลอกลิงก์
+        document.addEventListener("DOMContentLoaded", () => {
+            // ค้นหาปุ่ม 🔗 ทั้งหมด
+            const copyLinkButtons = document.querySelectorAll(".copy-link");
+    
+            copyLinkButtons.forEach((button) => {
+                button.addEventListener("click", () => {
+                    const link = button.getAttribute("data-link"); // ดึงลิงก์จาก data-link
+                    navigator.clipboard.writeText(link) // คัดลอกลิงก์ไปยังคลิปบอร์ด
+                        .then(() => {
+                            alert(`ลิงก์ถูกคัดลอก: ${link}`);
+                        })
+                        .catch(() => {
+                            alert("ไม่สามารถคัดลอกลิงก์ได้");
+                        });
+                });
+            });
+        });
+    </script>
+
 </body>
 </html>

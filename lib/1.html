@@ -6,7 +6,6 @@
     <title>Tam ROI Review</title>
     <title>Dropdown Manu</title>
     <style>
-        /* Reset Styles */
         body {
             margin: 0;
             font-family: Arial, sans-serif;
@@ -21,88 +20,90 @@
             justify-content: space-between;
             align-items: center;
         }
+
         header img {
             height: 50px;
         }
-        nav {
-            display: flex;
-            gap: 15px;
-        }
-        nav a {
-            text-decoration: none;
-            color: black;
-            font-weight: bold;
-        }
 
-        /* Menu Icons */
         .menu-icons {
             display: flex;
-            gap: 10px;
+            gap: 15px;
             font-size: 20px;
+        }
+
+        .menu-icons span {
+            cursor: pointer;
         }
 
         /* Categories */
         .categories {
-            background-color: #ffeb00;
-            padding: 10px;
             display: flex;
             justify-content: center;
-            gap: 15px;
+            background-color: #ffeb00;
+            padding: 10px 0;
         }
+
         .categories a {
             text-decoration: none;
             color: black;
+            margin: 0 15px;
             font-weight: bold;
         }
 
-        /* Grid Content */
-        .grid-container {
+        /* Post Grid */
+        .post-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
             gap: 20px;
             padding: 20px;
         }
-        .card {
+
+        /* Post Card */
+        .post-card {
             background: white;
             border-radius: 10px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
         }
-        .card img {
+
+        .post-card img {
             width: 100%;
             height: auto;
         }
-        .card-content {
-            padding: 10px;
-            text-align: center;
+
+        .post-content {
+            padding: 15px;
         }
-        .card-content h3 {
-            font-size: 18px;
-            margin: 5px 0;
-        }
-        .card-footer {
+
+        .post-footer {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             padding: 10px 15px;
             background: #f8f8f8;
             border-top: 1px solid #ddd;
         }
-        .card-footer span {
+
+        .post-footer span {
             font-size: 14px;
             color: #666;
         }
-        .card-footer .actions {
+
+        .post-footer .actions {
             display: flex;
             gap: 10px;
         }
-        .card-footer .actions button {
+
+        .post-footer .actions button {
             background: none;
             border: none;
             cursor: pointer;
             font-size: 16px;
         }
 
-        /* Add Content Button */
+        /* Floating Button */
         .add-content-button {
             position: fixed;
             bottom: 20px;
@@ -118,12 +119,52 @@
             cursor: pointer;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
         }
+
         .add-content-button:hover {
             background-color: #ffd700;
         }
+        .categories {
+        display: flex; /* ใช้ Flexbox */
+        justify-content: space-evenly; /* กระจายหมวดหมู่ให้ห่างเท่าๆ กัน */
+        align-items: center; /* จัดให้อยู่ตรงกลางแนวตั้ง */
+        padding: 10px 0;
+        background-color: #ffeb00; /* พื้นหลังสีเหลือง */
+        width: 100%; /* ทำให้แถบเต็มหน้าจอ */
+        box-sizing: border-box; /* รวม padding ในการคำนวณขนาด */
+        }
 
-                /* Dropdown Menu */
-                .dropdown {
+        .categories a {
+        text-decoration: none; /* ลบเส้นใต้ลิงก์ */
+        color: black; /* สีตัวอักษร */
+        font-size: 18px; /* ขนาดตัวอักษร */
+        font-weight: bold; /* ตัวหนา */
+        padding: 5px 10px; /* เพิ่มระยะห่างรอบลิงก์ */
+        transition: color 0.3s; /* เอฟเฟกต์เปลี่ยนสีเมื่อ Hover */
+        }
+
+        .categories a:hover {
+            color: #555; /* เปลี่ยนสีเมื่อวางเมาส์ */
+        }
+
+        .center-text {
+            text-align: center;
+            margin: 10px 0 20px 0;
+            position: relative;
+            font-weight: bold;
+            background-color: #fffbea;
+        }
+
+        .center-text h2 {
+            display: inline-block;
+            font-size: 20px;
+            padding: 0 10px;
+            position: relative;
+            z-index: 2;
+            background-color: #fffbea;
+        }
+
+        /* Dropdown Menu */
+        .dropdown {
             position: relative;
             display: inline-block;
         }
@@ -132,28 +173,30 @@
             display: none;
             position: absolute;
             right: 0;
+            top: 40px;
             background-color: white;
-            min-width: 150px;
+            width: 200px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-            border-radius: 5px;
-            text-align: left;
+            border-radius: 10px;
+            z-index: 10;
+            padding: 20px;
+            text-align: center;
         }
 
         .dropdown-content a {
-            color: black;
-            padding: 10px 15px;
-            text-decoration: none;
             display: block;
+            margin: 10px 0;
+            color: black;
+            text-decoration: none;
             font-size: 16px;
         }
 
         .dropdown-content a:hover {
-            background-color: #f1f1f1;
+            color: #ffeb00;
         }
 
-        .dropdown hr {
-            margin: 0;
+        .dropdown-content hr {
+            margin: 10px 0;
             border: none;
             border-top: 1px solid #ddd;
         }
@@ -162,193 +205,444 @@
         .dropdown.open .dropdown-content {
             display: block;
         }
+
+         /* Modal */
+         .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            width: 80%;
+            max-width: 500px;
+        }
+
+        .modal-header {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .modal-body {
+            margin: 15px 0;
+        }
+
+        .modal-body input[type="file"],
+
+        .modal-body input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .modal-body button {
+            background-color: #ffeb00;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .modal-body button:hover {
+            background-color: #ffd700;
+        }
+
+        .comment-section {
+            padding: 10px 15px;
+            background: #f9f9f9;
+            border-top: 1px solid #ddd;
+        }
+
+        .comment-list {
+             margin-bottom: 10px;
+        }
+
+        .comment-item {
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+
+        .comment-section input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
         
     </style>
 </head>
 <body>
     <!-- Header -->
     <header>
-        <img src="โลโก้เว็บตามรอยรีวิว.png" alt="Logo">
-        <div class="categories">
-            <span>ติดตาม</span>
-            <span>สำหรับคุณ</span>
-             
-        </div>
+        <img src="logo.png" alt="Logo">
         <div class="menu-icons">
             <span>🏠</span>
-            <span class="search-icon">🔍</span>
-            <span>📸</span>
+            <span>🔍</span>
+            <span id="image-search-icon">📸</span>
             <span>🔔</span>
-            <span>👤</span>
-     <!-- Dropdown Menu -->
-     <div class="dropdown" id="dropdownMenu">
-        <span id="dropdownButton">☰</span>
-        <div class="dropdown-content">
-            <a href="#">สมัครสมาชิก</a>
-            <hr>
-            <a href="#">เข้าสู่ระบบ</a>
-        </div>
-    </div>
+            <span onclick="location.href='login.html'" style="cursor: pointer;">👤</span>
+            <div class="dropdown">
+                <span class="dropdown-icon" id="dropdownButton">☰</span>
+                <div class="dropdown-content" id="dropdownMenu">
+                    <a href="login.html">สมัครสมาชิก</a>
+                    <hr>
+                    <a href="login.html">เข้าสู่ระบบ</a>
+                </div>
+            </div>
 
-    <script>
-        // Handle dropdown toggle
-        const dropdown = document.getElementById('dropdownMenu');
-        const dropdownButton = document.getElementById('dropdownButton');
-
-        // Toggle dropdown visibility when button is clicked
-        dropdownButton.addEventListener('click', (e) => {
-            e.stopPropagation(); // Prevent click event from propagating to the body
-            dropdown.classList.toggle('open');
-        });
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!dropdown.contains(e.target)) {
-                dropdown.classList.remove('open');
-            }
-        });
-    </script>
-            
-            
+            <div class="modal" id="imageSearchModal">
+                <div class="modal-content">
+                    <span class="modal-close" id="closeModal">✖</span>
+                    <div class="modal-header">ค้นหาด้วย Lens</div>
+                    <div class="modal-body">
+                        <p>ลากรูปภาพมาที่นี่หรือ <a href="#">อัปโหลดไฟล์</a></p>
+                        <input type="file" id="imageUpload">
+                        <p>หรือ</p>
+                        <input type="text" id="imageLink" placeholder="วางลิงก์รูปภาพ">
+                        <button id="searchButton">ค้นหา</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
+
+    <script>
+        const imageSearchIcon = document.getElementById('image-search-icon');
+        const imageSearchModal = document.getElementById('imageSearchModal');
+        const closeModal = document.getElementById('closeModal');
+        const searchButton = document.getElementById('searchButton');
+
+        // Open modal when clicking the 📸 icon
+        imageSearchIcon.addEventListener('click', () => {
+            imageSearchModal.style.display = 'flex';
+        });
+
+        // Close modal when clicking the ✖
+        closeModal.addEventListener('click', () => {
+            imageSearchModal.style.display = 'none';
+        });
+
+        // Close modal when clicking outside the modal
+        window.addEventListener('click', (event) => {
+            if (event.target === imageSearchModal) {
+                imageSearchModal.style.display = 'none';
+            }
+        });
+
+        // Handle search button click
+        searchButton.addEventListener('click', () => {
+            const imageUpload = document.getElementById('imageUpload').files[0];
+            const imageLink = document.getElementById('imageLink').value;
+
+            if (imageUpload) {
+                alert(`คุณได้อัปโหลดไฟล์: ${imageUpload.name}`);
+            } else if (imageLink) {
+                alert(`คุณได้ใส่ลิงก์รูปภาพ: ${imageLink}`);
+            } else {
+                alert('โปรดเลือกไฟล์หรือใส่ลิงก์รูปภาพก่อนค้นหา');
+            }
+        });
+    </script>
+    
+    
+    <script>
+        const dropdownButton = document.getElementById('dropdownButton');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+
+        dropdownButton.addEventListener('click', () => {
+            dropdownMenu.parentElement.classList.toggle('open');
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                dropdownMenu.parentElement.classList.remove('open');
+            }
+        });
+    </script>
+
+
+</body>
+    
+    <div class="center-text">
+        <h2>สำหรับคุณ</h2>
+    </div>
+
     <!-- Categories -->
     <div class="categories">
-        <nav>
-            <a href="#">อาหาร</a>
-            <a href="#">แฟชั่น</a>
-            <a href="#">การท่องเที่ยว</a>
-            <a href="#">สุขภาพ</a>
-            <a href="#">การตกแต่งบ้าน</a>
-            <a href="#">สกินแคร์</a>
-            <a href="#">ถ่ายรูป</a>
-            <a href="#">สัตว์เลี้ยง</a>
-            <a href="#">อาชีพ</a>
-            <a href="#">ลดน้ำหนัก</a>
-        </nav>
-    </div> 
-  
+        <a href="#">อาหาร</a>
+        <a href="#">แฟชั่น</a>
+        <a href="#">การท่องเที่ยว</a>
+        <a href="#">สุขภาพ</a>
+        <a href="#">การตกแต่งบ้าน</a>
+        <a href="#">สกินแคร์</a>
+        <a href="#">ถ่ายรูป</a>
+        <a href="#">สัตว์เลี้ยง</a>
+        <a href="#">อาชีพ</a>
+        <a href="#">ลดน้ำหนัก</a>
+    </div>
+
     
-    
-    <!-- Grid Content -->
-    <main>
-        <div class="grid-container">
-            <!-- Post Card -->
-            <div class="card">
-                <img src="สูตรหมูทอด.png.jpeg" alt="สูตรหมูทอด">
-                <div class="card-content">
-                    <h3>สูตรหมูทอด</h3>
-                </div>
-                <div class="card-footer">
-                    <span>❤️ 204</span>
-                    <div class="actions">
-                        <button>💬</button>
-                        <button>🔗</button>
-                    </div>
+    <!-- Post Grid -->
+    <main class="post-grid">
+        <div class="post-card">
+            <img src="post1.jpg" alt="Post Image">
+            <div class="post-content">
+                <strong>สูตรหมูทอด</strong>
+            </div>
+            <div class="post-footer">
+                <span>❤️ 220</span>
+                <div class="actions">
+                    <button>💬</button>
+                    <button class="copy-link" data-link="https://example.com/post1">🔗</button>
                 </div>
             </div>
-            <!-- Post Card -->
-            <div class="card">
-                <img src="แชร์ไอเดียอาหารอร่อย.png.jpeg" alt="แชร์ไอเดียอาหารอร่อย">
-                <div class="card-content">
-                    <h3>แชร์ไอเดียอาหารอร่อย</h3>
-                </div>
-                <div class="card-footer">
-                    <span>❤️ 320</span>
-                    <div class="actions">
-                        <button>💬</button>
-                        <button>🔗</button>
-                    </div>
-                </div>
+            <div class="comment-section" style="display: none;">
+                <div class="comment-list"></div>
+                <input type="text" placeholder="เพิ่มความคิดเห็น...">
             </div>
-            <!-- Post Card -->
-            <div class="card">
-                <img src="10เมนูทางเลือกแคลอรี่น้อย.png.jpeg" alt="10เมนูทางเลือกแคลลอรี่ต่ำ">
-                <div class="card-content">
-                    <h3>มัดรวม 10 เมนูทางเลือกแคลลอรี่น้อย</h3>
-                </div>
-                <div class="card-footer">
-                    <span>❤️ 150</span>
-                    <div class="actions">
-                        <button>💬</button>
-                        <button>🔗</button>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <img src="เมนู if.jpeg" alt="เมนู if">
-                <div class="card-content">
-                    <h3>มัดรวมเมนูชาว if</h3>
-                </div>
-                <div class="card-footer">
-                    <span>❤️ 150</span>
-                    <div class="actions">
-                        <button>💬</button>
-                        <button>🔗</button>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <img src="เมนูลวกจิ้ม.png.jpeg" alt="เมนูลวกจิ้ม">
-                <div class="card-content">
-                    <h3>9 เมนูลวกจิ้มช่วงลดน้ำหนัก</h3>
-                </div>
-                <div class="card-footer">
-                    <span>❤️ 150</span>
-                    <div class="actions">
-                        <button>💬</button>
-                        <button>🔗</button>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <img src="เมนูข้าวกล่อง.png.jpeg" alt="เมนูข้าวกล่อง">
-                <div class="card-content">
-                    <h3>เมนูข้าวกล่อง</h3>
-                </div>
-                <div class="card-footer">
-                    <span>❤️ 150</span>
-                    <div class="actions">
-                        <button>💬</button>
-                        <button>🔗</button>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <img src="สปาเกตตี้.png.jpeg" alt="สปาเกตตี้">
-                <div class="card-content">
-                    <h3>แจกสูตร สปาเกตตี้ซอสมะเขือเทศ</h3>
-                </div>
-                <div class="card-footer">
-                    <span>❤️ 150</span>
-                    <div class="actions">
-                        <button>💬</button>
-                        <button>🔗</button>
-                    </div>
-                </div>
-            </div>
-            <div class="card">
-                <img src="หมี่ไก่ฉีก.png.jpeg" alt="หมี่ไก่ฉีก">
-                <div class="card-content">
-                    <h3>เส้นหมี่ไก่ฉีก</h3>
-                </div>
-                <div class="card-footer">
-                    <span>❤️ 150</span>
-                    <div class="actions">
-                        <button>💬</button>
-                        <button>🔗</button>
-                    </div>
-            
-            <!-- Add More Cards as Needed -->
         </div>
+        
+
+        <div class="post-card">
+            <img src="post2.jpg" alt="Post Image">
+            <div class="post-content">
+                <strong>รวมเมนูสุขภาพ</strong>
+            </div>
+            <div class="post-footer">
+                <span>❤️ 320</span>
+                <div class="actions">
+                    <button>💬</button>
+                    <button>🔗</button>
+                </div>
+            </div>
+            <div class="comment-section" style="display: none;">
+                <div class="comment-list"></div>
+                <input type="text" placeholder="เพิ่มความคิดเห็น...">
+            </div>
+        </div>
+
+        <div class="post-card">
+            <img src="post1.jpg" alt="Post Image">
+            <div class="post-content">
+                <strong>สูตรหมูทอด</strong>
+            </div>
+            <div class="post-footer">
+                <span>❤️ 204</span>
+                <div class="actions">
+                    <button>💬</button>
+                    <button>🔗</button>
+                </div>
+            </div>
+            <div class="comment-section" style="display: none;">
+                <div class="comment-list"></div>
+                <input type="text" placeholder="เพิ่มความคิดเห็น...">
+            </div>
+        </div>
+
+        <div class="post-card">
+            <img src="post2.jpg" alt="Post Image">
+            <div class="post-content">
+                <strong>รวมเมนูสุขภาพ</strong>
+            </div>
+            <div class="post-footer">
+                <span>❤️ 320</span>
+                <div class="actions">
+                    <button>💬</button>
+                    <button>🔗</button>
+                </div>
+            </div>
+            <div class="comment-section" style="display: none;">
+                <div class="comment-list"></div>
+                <input type="text" placeholder="เพิ่มความคิดเห็น...">
+            </div>
+        </div>
+
+        <div class="post-card">
+            <img src="post1.jpg" alt="Post Image">
+            <div class="post-content">
+                <strong>สูตรหมูทอด</strong>
+            </div>
+            <div class="post-footer">
+                <span>❤️ 204</span>
+                <div class="actions">
+                    <button>💬</button>
+                    <button>🔗</button>
+                </div>
+            </div>
+            <div class="comment-section" style="display: none;">
+                <div class="comment-list"></div>
+                <input type="text" placeholder="เพิ่มความคิดเห็น...">
+            </div>
+        </div>
+
+        <div class="post-card">
+            <img src="post2.jpg" alt="Post Image">
+            <div class="post-content">
+                <strong>รวมเมนูสุขภาพ</strong>
+            </div>
+            <div class="post-footer">
+                <span>❤️ 320</span>
+                <div class="actions">
+                    <button>💬</button>
+                    <button>🔗</button>
+                </div>
+            </div>
+            <div class="comment-section" style="display: none;">
+                <div class="comment-list"></div>
+                <input type="text" placeholder="เพิ่มความคิดเห็น...">
+            </div>
+        </div>
+
+        <div class="post-card">
+            <img src="post1.jpg" alt="Post Image">
+            <div class="post-content">
+                <strong>สูตรหมูทอด</strong>
+            </div>
+            <div class="post-footer">
+                <span>❤️ 204</span>
+                <div class="actions">
+                    <button>💬</button>
+                    <button>🔗</button>
+                </div>
+            </div>
+            <div class="comment-section" style="display: none;">
+                <div class="comment-list"></div>
+                <input type="text" placeholder="เพิ่มความคิดเห็น...">
+            </div>
+        </div>
+
+        <div class="post-card">
+            <img src="post2.jpg" alt="Post Image">
+            <div class="post-content">
+                <strong>รวมเมนูสุขภาพ</strong>
+            </div>
+            <div class="post-footer">
+                <span>❤️ 320</span>
+                <div class="actions">
+                    <button>💬</button>
+                    <button>🔗</button>
+                </div>
+            </div>
+            <div class="comment-section" style="display: none;">
+                <div class="comment-list"></div>
+                <input type="text" placeholder="เพิ่มความคิดเห็น...">
+            </div>
+        </div>
+
+        <script>
+            // เพิ่ม Event Listener ให้ปุ่ม ❤️
+            document.addEventListener('DOMContentLoaded', () => {
+                // ค้นหาไอคอน ❤️ ทั้งหมดใน post-footer
+                const likeButtons = document.querySelectorAll('.post-footer span');
+        
+                likeButtons.forEach((likeButton) => {
+                    likeButton.addEventListener('click', () => {
+                        // ดึงค่าปัจจุบันของตัวเลข ❤️ และแปลงเป็นตัวเลข
+                        let currentLikes = parseInt(likeButton.textContent.split(' ')[1]);
+                        // เพิ่มค่าขึ้นทีละ 1
+                        currentLikes += 1;
+                        // อัปเดตข้อความในไอคอน ❤️
+                        likeButton.textContent = `❤️ ${currentLikes}`;
+                    });
+                });
+            });
+        </script>
+        
+
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
+                // ค้นหาปุ่ม 💬 ในทุกโพสต์
+                const commentButtons = document.querySelectorAll(".post-footer .actions button:nth-child(1)");
+        
+                commentButtons.forEach((button, index) => {
+                    button.addEventListener("click", () => {
+                        // แสดงหรือซ่อนส่วนความคิดเห็นของโพสต์ที่เกี่ยวข้อง
+                        const commentSection = document.querySelectorAll(".comment-section")[index];
+                        if (commentSection.style.display === "none" || !commentSection.style.display) {
+                            commentSection.style.display = "block";
+                        } else {
+                            commentSection.style.display = "none";
+                        }
+                    });
+                });
+        
+                // จัดการเหตุการณ์การกด Enter ในช่องความคิดเห็น
+                const commentInputs = document.querySelectorAll(".comment-section input");
+        
+                commentInputs.forEach((input, index) => {
+                    input.addEventListener("keypress", (event) => {
+                        if (event.key === "Enter" && input.value.trim() !== "") {
+                            // เพิ่มความคิดเห็นในส่วน comment-list ของโพสต์ที่เกี่ยวข้อง
+                            const commentList = document.querySelectorAll(".comment-list")[index];
+                            const newComment = document.createElement("div");
+                            newComment.classList.add("comment-item");
+                            newComment.textContent = input.value;
+        
+                            commentList.appendChild(newComment); // เพิ่มความคิดเห็นใน list
+                            input.value = ""; // ล้างข้อความใน input
+                        }
+                        
+                    });
+                });
+            });
+        </script>
+        
+
+
+        <!-- Repeat for more posts -->
     </main>
 
     <!-- Add Content Button -->
-    <div class="add-content-button">
-        <a href="content.html" style="text-decoration: none; color: black;">+</a>
-    </div>
+    <a href="login.html" class="add-content-button">+</a>
+
+    <script>
+        // เพิ่มฟังก์ชันสำหรับคัดลอกลิงก์
+        document.addEventListener("DOMContentLoaded", () => {
+            // ค้นหาปุ่ม 🔗 ทั้งหมด
+            const copyLinkButtons = document.querySelectorAll(".copy-link");
     
-    
+            copyLinkButtons.forEach((button) => {
+                button.addEventListener("click", () => {
+                    const link = button.getAttribute("data-link"); // ดึงลิงก์จาก data-link
+                    navigator.clipboard.writeText(link) // คัดลอกลิงก์ไปยังคลิปบอร์ด
+                        .then(() => {
+                            alert(`ลิงก์ถูกคัดลอก: ${link}`);
+                        })
+                        .catch(() => {
+                            alert("ไม่สามารถคัดลอกลิงก์ได้");
+                        });
+                });
+            });
+        });
+    </script>
+
 </body>
 </html>
