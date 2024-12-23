@@ -2,7 +2,7 @@
 $servername = "localhost"; // ชื่อเซิร์ฟเวอร์
 $username = "root";       // ชื่อผู้ใช้ (ค่าเริ่มต้นคือ root)
 $password = "";           // รหัสผ่าน (ค่าเริ่มต้นคือว่างเปล่า)
-$dbname = "ข้อมูลแอดมิน"; // ชื่อฐานข้อมูล
+$dbname = "ตามรอยรีวิว"; // ชื่อฐานข้อมูล
 
 // สร้างการเชื่อมต่อ
 $conn = new mysqli($servername, $username, $password, $dbname);
