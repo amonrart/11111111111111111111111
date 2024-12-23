@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tam ROI Review - Post</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #fffbea;
+        }
+
+        /* Header */
+        header {
+            background-color: #ffeb00;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header img {
+            height: 40px;
+        }
+
+        nav {
+            display: flex;
+            gap: 15px;
+            font-size: 16px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #555;
+        }
+
+        .menu-icons {
+            display: flex;
+            gap: 10px;
+            font-size: 20px;
+        }
+
+        /* Main Content */
+        .post-container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .post-container img {
+            width: 100%;
+            height: auto;
+        }
+
+        .post-header {
+            padding: 10px;
+            background-color: #ffeb00;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .post-header .profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .profile span {
+            font-weight: bold;
+        }
+
+        .post-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .post-content {
+            padding: 15px;
+        }
+
+        .post-content h2 {
+            margin: 0 0 10px;
+            font-size: 20px;
+        }
+
+        .post-footer {
+            padding: 15px;
+            border-top: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .share-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .share-icons img {
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+
+        .download-button {
+            background-color: #ffeb00;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .download-button:hover {
+            background-color: #ffd700;
+        }
+
+        .floating-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #ffeb00;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 36px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .floating-button:hover {
+            background-color: #ffd700;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <img src="logo.png" alt="Tam ROI Review">
+        <nav>
+            <a href="#">อาหาร</a>
+            <a href="#">แฟชั่น</a>
+            <a href="#">การท่องเที่ยว</a>
+            <a href="#">สุขภาพ</a>
+            <a href="#">การตกแต่งบ้าน</a>
+            <a href="#">สกินแคร์</a>
+            <a href="#">ถ่ายรูป</a>
+            <a href="#">สัตว์เลี้ยง</a>
+            <a href="#">อาชีพ</a>
+            <a href="#">ลดน้ำหนัก</a>
+        </nav>
+        <div class="menu-icons">
+            <span>🏠</span>
+            <span>🔍</span>
+            <span>📸</span>
+            <span>🔔</span>
+            <span>👤</span>
+        </div>
+    </header>
+
+    <!-- Post Content -->
+    <div class="post-container">
+        <div class="post-header">
+            <div class="profile">
+                <img src="profile.jpg" alt="Profile">
+                <span>นักรีวิว</span>
+            </div>
+            <div class="post-actions">
+                <button>ติดตาม</button>
+                <span>...</span>
+            </div>
+        </div>
+        <img src="post.jpg" alt="Post Image">
+        <div class="post-content">
+            <h2>แจกสูตร สามชั้นผักกาดดอง</h2>
+        </div>
+        <div class="post-footer">
+            <div class="share-icons">
+                <img src="line.jpeg" alt="LINE">
+                <img src="messenger.png" alt="Messenger">
+                <img src="instagram.png" alt="Instagram">
+                <img src="facebook.png" alt="Facebook">
+                <img src="link.png" alt="Copy Link">
+            </div>
+            <div class="download-container">
+                <button class="download-button">ดาวน์โหลดรูปภาพ</button>
+            </div>
+        </div>
+
+    <!-- Floating Button -->
+    <div class="floating-button">+</div>
+</body>
+</html>

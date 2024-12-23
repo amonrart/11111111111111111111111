@@ -141,10 +141,37 @@
             </select>
 
             <!-- Image Upload -->
+            <!-- Image Upload -->
             <div class="upload-box" onclick="document.getElementById('file-upload').click();">
                 <span>+</span>
-                <input type="file" id="file-upload" name="image" style="display: none;">
+                <input type="file" id="file-upload" name="image" style="display: none;" accept="image/*">
             </div>
+            <div id="image-preview" style="text-align: center; margin-top: 10px; color: #555;">
+                <!-- พื้นที่แสดงพรีวิวรูปภาพ -->
+            </div>
+
+
+            <script>
+                // จัดการการอัปโหลดไฟล์
+                document.getElementById('file-upload').addEventListener('change', function (event) {
+                    const file = event.target.files[0]; // ดึงไฟล์ที่อัปโหลด
+                    const previewContainer = document.getElementById('image-preview'); // พื้นที่พรีวิว
+            
+                    // ตรวจสอบว่ามีการเลือกไฟล์หรือไม่
+                    if (file) {
+                        // สร้าง URL สำหรับพรีวิวรูปภาพ
+                        const reader = new FileReader();
+                        reader.onload = function (e) {
+                            // แสดงพรีวิวรูปภาพ
+                            previewContainer.innerHTML = `<img src="${e.target.result}" alt="Preview" style="max-width: 100%; height: auto; border: 1px solid #ddd; border-radius: 10px;">`;
+                        };
+                        reader.readAsDataURL(file); // อ่านไฟล์เป็น Data URL
+                    } else {
+                        previewContainer.innerHTML = 'ยังไม่มีการเลือกไฟล์'; // กรณีไม่มีไฟล์
+                    }
+                });
+            </script>
+            
 
             <!-- Caption -->
             <textarea name="caption" placeholder="เพิ่มหัวเรื่องน่าสนใจเพื่อเพิ่มยอดดู"></textarea>
@@ -154,6 +181,7 @@
                 <button type="button">📎 ไอเดียแนบไฟล์</button>
                 <button type="button">📍 สถานที่</button>
             </div>
+
 
             <!-- Location -->
             <div class="location">
