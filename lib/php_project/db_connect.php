@@ -2,7 +2,7 @@
 $servername = "localhost"; // ชื่อเซิร์ฟเวอร์
 $username = "root";       // ชื่อผู้ใช้ (ค่าเริ่มต้นคือ root)
 $password = "";           // รหัสผ่าน (ค่าเริ่มต้นคือว่างเปล่า)
-$dbname = "ตามรอยรีวิว"; // ชื่อฐานข้อมูล
+$dbname = "จำนวนหมวดหมู่"; // ชื่อฐานข้อมูล
 
 // สร้างการเชื่อมต่อ
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -13,4 +13,3 @@ if ($conn->connect_error) {
 }
 echo "เชื่อมต่อฐานข้อมูลสำเร็จ!";
 ?>
-C:\Users\AdviceIT\Downloads\php-8.4.2\php-8.4.2
