@@ -157,39 +157,83 @@
 
     <main>
         <div class="post-container">
-            <form action="submit_post.php" method="POST" enctype="multipart/form-data">
-                <!-- Dropdown -->
-                <div class="dropdown">
-                    <select id="category" name="category" required>
-                        <option value="">เลือกหมวดหมู่การโพสต์</option>
-                        <option value="อาหาร">อาหาร</option>
-                        <option value="แฟชั่น">แฟชั่น</option>
-                        <option value="การท่องเที่ยว">การท่องเที่ยว</option>
-                        <option value="สุขภาพ">สุขภาพ</option>
-                        <option value="การตกแต่งบ้าน">การตกแต่งบ้าน</option>
-                        <option value="สกินแคร์">สกินแคร์</option>
-                        <option value="สัตว์เลี้ยง">สัตว์เลี้ยง</option>
-                        <option value="ถ่ายรูป">ถ่ายรูป</option>
-                    </select>
-                </div>
-        
-                <!-- Upload Section -->
-                <label class="upload-section" for="upload-image">
-                    <i class="fas fa-plus"></i>
-                    <input type="file" id="upload-image" name="image" accept="image/*" onchange="showPreview(event)">
-                    <img id="image-preview" class="upload-preview" style="display:none;" />
-                </label>
-        
-                <!-- Input Fields -->
-                <input type="text" class="input-field" id="title" name="title" placeholder="เพิ่มหัวเรื่องน่าสนใจ..." required>
-                <textarea id="content" name="content" placeholder="โพสต์อะไรบางอย่าง..." required></textarea>
-                
-                
-                <!-- Submit Button -->
-                <button type="submit" class="submit-button">โพสต์</button>
-            </form>
-        </div>
+            <!-- Dropdown -->
+            <div class="dropdown">
+                <select id="category">
+                    <option value="">เลือกหมวดหมู่การโพสต์</option>
+                    <option value="อาหาร">อาหาร</option>
+                    <option value="แฟชั่น">แฟชั่น</option>
+                    <option value="การท่องเที่ยว">การท่องเที่ยว</option>
+                    <option value="สุขภาพ">สุขภาพ</option>
+                    <option value="การตกแต่งบ้าน">การตกแต่งบ้าน</option>
+                    <option value="สกินแคร์">สกินแคร์</option>
+                    <option value="สัตว์เลี้ยง">สัตว์เลี้ยง</option>
+                    <option value="ถ่ายรูป">ถ่ายรูป</option>
+                </select>
+            </div>
 
+            <!-- Upload Section -->
+            <label class="upload-section" for="upload-image">
+                <i class="fas fa-plus"></i>
+                <input type="file" id="upload-image" accept="image/*" onchange="showPreview(event)">
+                <img id="image-preview" class="upload-preview" style="display:none;" />
+            </label>
+
+            <!-- Input Fields -->
+            <input type="text" class="input-field" id="title" placeholder="เพิ่มหัวเรื่องน่าสนใจ...">
+            <textarea id="content" placeholder="โพสต์อะไรบางอย่าง..."></textarea>
+
+            <!-- Location Section -->
+            <div class="location-section">
+                <div>
+                    <i class="fas fa-map-marker-alt"></i> <span>เพิ่มตำแหน่งที่ตั้ง</span>
+                </div>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+
+            <!-- Submit Button -->
+            <button class="submit-button" onclick="submitPost()">โพสต์</button>
+        </div>
+    </main>
+
+
+    <script>
+        function showPreview(event) {
+            const preview = document.getElementById('image-preview');
+            preview.style.display = 'block';
+            preview.src = URL.createObjectURL(event.target.files[0]);
+        }
+    
+        function submitPost() {
+            const category = document.getElementById('category').value;
+            const title = document.getElementById('title').value;
+            const content = document.getElementById('content').value;
+    
+            if (!category || !title || !content) {
+                alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+                return;
+            }
+    
+            // ส่งข้อมูลไปยัง PHP
+            fetch('submit_post.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `user_name=JohnDoe&category=${encodeURIComponent(category)}&title=${encodeURIComponent(title)}&content=${encodeURIComponent(content)}`
+            })
+            .then(response => response.text())
+            .then(data => {
+                alert(data);
+                // กลับไปหน้า Home หลังจากโพสต์สำเร็จ
+                window.location.href = 'home.html';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+    
     <script>
         function showPreview(event) {
             const preview = document.getElementById('image-preview');
